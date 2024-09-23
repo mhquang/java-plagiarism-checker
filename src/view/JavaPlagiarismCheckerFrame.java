@@ -1,4 +1,6 @@
-package SwingChallenge;
+package SwingChallenge.src.view;
+
+import SwingChallenge.src.model.JavaPlagiarismCheckerPanel;
 
 import javax.swing.*;
 

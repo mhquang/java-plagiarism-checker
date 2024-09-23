@@ -1,10 +1,14 @@
-package SwingChallenge;
+package SwingChallenge.src.control;
+
+import SwingChallenge.src.model.JavaPlagiarismCheckerPanel;
+import SwingChallenge.src.model.SimilarityChecker;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class CheckPlagiarismListener implements ActionListener {
@@ -37,12 +41,13 @@ public class CheckPlagiarismListener implements ActionListener {
                         panel.appendResultArea(
                                 String.format("Plagiarism detected between %s and %s: %.2f%% similarity\n",
                                         file1.getName(), file2.getName(), similarity * 100));
+                        SimilarityChecker.saveResult(panel.getConnection(), file1.getName(), file2.getName(), similarity);
                     } else {
                         panel.appendResultArea(
                                 String.format("No plagiarism detected between %s and %s.\n",
                                         file1.getName(), file2.getName()));
                     }
-                } catch (IOException exception) {
+                } catch (IOException | SQLException exception) {
                     panel.appendResultArea("Error reading files: " + exception.getMessage() + "\n");
                 }
             }

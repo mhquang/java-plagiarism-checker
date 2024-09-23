@@ -1,8 +1,11 @@
-package SwingChallenge;
+package SwingChallenge.src.model;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,5 +27,15 @@ public class SimilarityChecker {
         union.addAll(set2);
 
         return (double) intersection.size() / union.size();
+    }
+
+    public static void saveResult(Connection conn, String file1, String file2, double similarity) throws SQLException {
+        String query = "INSERT INTO file_similarity (file1, file2, similarity) VALUES (?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, file1);
+            stmt.setString(2, file2);
+            stmt.setDouble(3, similarity * 100); // Store similarity as percentage
+            stmt.executeUpdate();
+        }
     }
 }
