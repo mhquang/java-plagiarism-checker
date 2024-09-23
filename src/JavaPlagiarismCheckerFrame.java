@@ -1,4 +1,4 @@
-package SwingChallenge;
+package SwingChallenge.src;
 
 import javax.swing.*;
 

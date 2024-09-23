@@ -1,4 +1,4 @@
-package SwingChallenge;
+package SwingChallenge.src;
 
 public class JavaPlagiarismChecker {
     public static void main(String[] args) {
