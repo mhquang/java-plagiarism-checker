@@ -1,4 +1,4 @@
-package SwingChallenge.src.model;
+package SwingChallenge.src.view;
 
 import SwingChallenge.src.control.CheckPlagiarismListener;
 import SwingChallenge.src.control.LoadFileListener;
